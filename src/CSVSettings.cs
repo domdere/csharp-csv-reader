@@ -30,6 +30,11 @@ namespace CSVFile
         public string LineSeparator { get; set; } = Environment.NewLine;
 
         /// <summary>
+        /// When parsing empty lines, keep the line separators in the output
+        /// </summary>
+        public bool PreserveLineSeparators { get; set; } = true;
+
+        /// <summary>
         /// Set this value to true to enclose all fields in the text qualifier character.
         /// </summary>
         public bool ForceQualifiers { get; set; }

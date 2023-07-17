@@ -89,11 +89,19 @@ namespace CSVFile
         /// <returns></returns>
         public string[] ParseLine(string line, bool reachedEnd)
         {
-            if (!string.IsNullOrEmpty(line))
+            if (_settings.PreserveLineSeparators)
             {
-                line += _settings.LineSeparator;
+                return ParseChunk(line + _settings.LineSeparator, reachedEnd);
             }
-            return ParseChunk(line, reachedEnd);
+            else
+            {
+                if (!string.IsNullOrEmpty(line))
+                {
+                    line += _settings.LineSeparator;
+                }
+
+                return ParseChunk(line, reachedEnd);
+            }
         }
 
         /// <summary>
