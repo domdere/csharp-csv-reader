@@ -91,7 +91,15 @@ namespace CSVFile
         {
             if (_settings.PreserveLineSeparators)
             {
-                return ParseChunk(line + _settings.LineSeparator, reachedEnd);
+                if (!reachedEnd || !string.IsNullOrEmpty(line))
+                {
+                    // adding the line sep when we have reached
+                    // end muddles the logic in that state machine that
+                    // detects the end of the file.
+                    line += _settings.LineSeparator;
+                }
+
+                return ParseChunk(line, reachedEnd);
             }
             else
             {
