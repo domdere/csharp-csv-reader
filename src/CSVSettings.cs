@@ -30,11 +30,6 @@ namespace CSVFile
         public string LineSeparator { get; set; } = Environment.NewLine;
 
         /// <summary>
-        /// When parsing empty lines, keep the line separators in the output
-        /// </summary>
-        public bool PreserveLineSeparators { get; set; } = true;
-
-        /// <summary>
         /// Set this value to true to enclose all fields in the text qualifier character.
         /// </summary>
         public bool ForceQualifiers { get; set; }
@@ -121,6 +116,12 @@ namespace CSVFile
         /// not throw an error for empty lines and will instead ignore it.
         /// </summary>
         public bool IgnoreEmptyLineForDeserialization { get; set; }
+
+        /// <summary>
+        /// When reading data from a stream, this is the block size to read at once.
+        /// </summary>
+        public int BufferSize { get; set; } = DEFAULT_BUFFER_SIZE;
+        internal static readonly int DEFAULT_BUFFER_SIZE = 65536;
 
         /// <summary>
         /// The encoding for converting streams of bytes to strings
